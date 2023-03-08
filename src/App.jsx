@@ -6,7 +6,7 @@ function App() {
     <>
      <div className="w-full h-full justify-center items-center flex">
          <ImageFile />
-    </div>
+     </div>
     </>
   )
 }

@@ -22,13 +22,10 @@ const ImageFile = () => {
       title:slicedTitle,
       description:slicedDescription,
       images:slicedImage,
-      
-    }
+      }
    })
-   
    setMovieData(movie)
-   
-   }
+  }
 
   function sendImageURL(movieUrl){
    setURL(movieUrl)
@@ -42,7 +39,7 @@ const ImageFile = () => {
 
   return (
     <>
-    <div className='w-[60%] h-full bg-stone-500'>
+   <div className='w-[60%] h-full bg-stone-500'>
     <div className='mx-auto py-12 bg-yellow-500 w-full h-full items-center flex justify-center flex-col gap-y-6'>
         {
           movieData?.map((movie,index)=>{
@@ -50,7 +47,12 @@ const ImageFile = () => {
             <div className='w-[80%] h-44 rounded-lg border-1 bg-black' key={index}>
             <div className='flex border-blue-300 rounded-lg border-1 w-full h-full mx-auto bg-green-700 shadow-lg duration-500 ease-out delay-100 justify-end cursor-pointer relative' onClick={()=>sendImageURL(movie.images)}>
              <div className='w-[50%] h-full border-black rounded-md rounded-tr-none rounded-br-none bg-pink-600'>
-               <img src={`${movieURL+'original'+movie?.images}`} alt='No-Image' className='w-full h-full object-cover rounded-md rounded-tr-none rounded-br-none duration-500 ease-out'/>
+              {movieData ? <img src={`${movieURL+'original'+movie?.images}`} alt='No-Image' className='w-full h-full object-cover rounded-md rounded-tr-none rounded-br-none duration-500 ease-out'/> : 
+              (
+              <div className="animate-spin rounded-full h-16 w-16 border-t-1 border-b-1 border-purple-700">
+              </div>
+              )
+              } 
               </div>
               <div className='w-2/4 h-full flex rounded-lg  bg-yellow-200 rounded-tl-none rounded-bl-none flex-col px-2 py-1'>
                <h2 className='text-2xl font-bold h-1/3 w-full'>{movie?.title}</h2>
