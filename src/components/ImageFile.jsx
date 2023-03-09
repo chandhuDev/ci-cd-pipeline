@@ -1,6 +1,9 @@
 import React,{useState,useEffect} from 'react'
 import ViewFile from "./ViewFile"
 
+const SECRET_API=import.meta.env.VITE_TMDB_SECRET_API
+
+
 const ImageFile = () => {
     const [movieData,setMovieData]=useState()
     const [movieURL,setMovieURL]=useState('https://image.tmdb.org/t/p/')
@@ -9,7 +12,7 @@ const ImageFile = () => {
 
    async function getFilmDetails(){
    let response=await fetch(`
-   https://api.themoviedb.org/3/movie/upcoming?api_key=1f5086bec29ee6ee4a7f31e2eee9d13e&language=en-US&page=1&region=IN`)
+   https://api.themoviedb.org/3/movie/upcoming?api_key=${SECRET_API}&language=en-US&page=1&region=IN`)
    let movieDataList=await response.json()
    let movieArray=movieDataList?.results
    

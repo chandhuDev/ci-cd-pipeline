@@ -5,8 +5,9 @@ import { useLocation } from 'react-router-dom';
 import CheckoutForm from "./CheckoutForm";
 import "./Stripe.css";
 
+const KEY=import.meta.env.VITE_STRIPE_API_PUBLISHABLE_KEY
 
-const stripePromise = loadStripe("pk_test_51MVZhjSI2utUDiQBNLDEcihkiqvlCMFUV33v1wElwPWw12458FeO4Hvs1DnTAp0TuVzGGOdA4JhQdWMcDKDZdDsC00XfGcZWPz");
+const stripePromise = loadStripe(KEY);
 
 export default function Payment() {
   const [clientSecret, setClientSecret] = useState();
@@ -14,7 +15,7 @@ export default function Payment() {
   const numberOfSeats = location.state&& location.state.numberOfSeats
   
 useEffect(() => {
-    fetch("http://localhost:5173/create-payment-intent", {
+    fetch("/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ seats:{numberOfSeats} }),
@@ -31,6 +32,7 @@ useEffect(() => {
     appearance,
   };
 
+  console.log(clientSecret)
   return (
     <div>
       {
